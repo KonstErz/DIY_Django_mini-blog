@@ -22,7 +22,7 @@ class Blog(models.Model):
 class Blogger(models.Model):
     name = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     bio = models.TextField(help_text='Enter information about yourself')
-    blogs = models.ForeignKey('Blog', on_delete=models.SET_NULL, null=True, blank=True)
+    blogs = models.ForeignKey(Blog, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
         return f'{self.name}'
@@ -33,10 +33,10 @@ class Blogger(models.Model):
 
 class Comment(models.Model):
     name = models.CharField(max_length=75)
-    blog = models.ForeignKey('Blog', on_delete=models.SET_NULL, null=True, blank=True)
+    blog = models.ForeignKey(Blog, on_delete=models.SET_NULL, null=True, blank=True)
     description = models.TextField(help_text='Enter your comment')
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
-    post_date = models.DateField(auto_now=True, blank=True)
+    post_date = models.DateTimeField(auto_now=True, blank=True)
 
     class Meta:
         ordering = ['post_date']
