@@ -33,9 +33,9 @@ class Blogger(models.Model):
 
 class Comment(models.Model):
     name = models.CharField(max_length=75)
-    blog = models.ForeignKey(Blog, on_delete=models.SET_NULL, null=True, blank=True)
-    description = models.TextField(help_text='Enter your comment')
-    author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE, null=True, blank=True)
+    description = models.TextField(help_text='Enter comment about blog here.')
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     post_date = models.DateTimeField(auto_now=True, blank=True)
 
     class Meta:

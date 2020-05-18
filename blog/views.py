@@ -1,5 +1,9 @@
 from django.shortcuts import render
 from .models import Blog, Blogger, Comment
+from django.views import generic
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic.edit import CreateView
+from django.shortcuts import get_object_or_404
 
 
 def index(request):
@@ -22,3 +26,26 @@ def index(request):
         'index.html',
         context=context,
     )
+
+
+class BlogListView(generic.ListView):
+    model = Blog
+    paginate_by = 5
+
+
+class BlogDetailView(generic.DetailView):
+    model = Blog
+
+
+class BloggerListView(generic.ListView):
+    model = Blogger
+    paginate_by = 5
+
+
+class BloggerDetailView(generic.DetailView):
+    model = Blogger
+
+
+# class BlogCommentCreate(LoginRequiredMixin, CreateView):
+    # model = Comment
+    # fields = ('description',)
