@@ -17,12 +17,11 @@
     {% endfor %}
   </div>
     <hr />
+
     {% if user.is_authenticated %}
-      <hr>
-      <a href="{% url 'comment_create' %}">Add a new comment</a>
+      <a href="{% url 'comment_create' blog.id %}">Add a new comment</a>
     {% else %}
       <a href="{% url 'login'%}?next={{request.path}}">Login</a> to add a new comment
     {% endif %}
-      <hr />
 
 {% endblock %}

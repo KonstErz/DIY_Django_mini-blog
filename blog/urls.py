@@ -10,6 +10,6 @@ urlpatterns = [
     path('blogger/<int:pk>', views.BloggerDetailView.as_view(), name='blogger-detail'),
 ]
 
-# urlpatterns += [
-    # path('blog/create/', views.BlogCommentCreate.as_view(), name='comment_create'),
-# ]
+urlpatterns += [
+    path('blog/<int:pk>/create/', views.BlogCommentCreate.as_view(), name='comment_create'),
+]

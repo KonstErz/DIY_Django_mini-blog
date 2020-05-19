@@ -26,4 +26,4 @@ class BlogAdmin(admin.ModelAdmin):
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('name', 'blog', 'post_date', 'author', 'description')
+    list_display = ('blog', 'post_date', 'author', 'description')

@@ -4,6 +4,7 @@ from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView
 from django.shortcuts import get_object_or_404
+from django.urls import reverse
 
 
 def index(request):
@@ -46,6 +47,19 @@ class BloggerDetailView(generic.DetailView):
     model = Blogger
 
 
-# class BlogCommentCreate(LoginRequiredMixin, CreateView):
-    # model = Comment
-    # fields = ('description',)
+class BlogCommentCreate(LoginRequiredMixin, CreateView):
+    model = Comment
+    fields = ('description',)
+
+    def get_context_data(self, **kwargs):
+        context = super(BlogCommentCreate, self).get_context_data(**kwargs)
+        context['blog'] = get_object_or_404(Blog, pk=self.kwargs['pk'])
+        return context
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        form.instance.blog = get_object_or_404(Blog, pk=self.kwargs['pk'])
+        return super(BlogCommentCreate, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse('blog-detail', kwargs={'pk': self.kwargs['pk']})
