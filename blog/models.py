@@ -8,7 +8,7 @@ class Blogger(models.Model):
     bio = models.TextField(help_text='Enter information about yourself')
 
     def __str__(self):
-        return f'{self.name}'
+        return self.name.username
 
     def get_absolute_url(self):
         return reverse('blogger-detail', args=[str(self.id)])

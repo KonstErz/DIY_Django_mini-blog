@@ -20,10 +20,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'isybxi8)a-t=+w!80j-zl4ah_ubtb-vgvkfw41=37o71$%vo+u'
+# SECRET_KEY = 'isybxi8)a-t=+w!80j-zl4ah_ubtb-vgvkfw41=37o71$%vo+u'
+
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'isybxi8)a-t=+w!80j-zl4ah_ubtb-vgvkfw41=37o71$%vo+u')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+
+DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
 
 ALLOWED_HOSTS = []
 
@@ -114,11 +118,13 @@ USE_L10N = True
 
 USE_TZ = True
 
+LOGIN_REDIRECT_URL = '/'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 STATIC_URL = '/static/'
-
-
-LOGIN_REDIRECT_URL = '/'
