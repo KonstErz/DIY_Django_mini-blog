@@ -60,4 +60,5 @@ where *'env'* is the name of the virtual environment.
 
 3. Open a browser to `http://127.0.0.1:8000/admin/` to open the admin panel of the site.
 4. You will need to create test bloggers and blogs under their authorship. You can also register other test users who can write comments on blogs after logging in the system.
-5. Open tab to `http://127.0.0.1:8000/blog/` to see the main site, with your new objects.
+5. Open tab to `http://127.0.0.1:8000/blog/` to see the main site, with your new objects.  
+Ctrl+C - to exit debug mode of a web application and `deactivate` - command to exit the virtual environment.
